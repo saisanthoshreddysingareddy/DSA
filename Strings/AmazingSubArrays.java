@@ -40,6 +40,7 @@
 */
 
 
+
 public class Solution {
     public int solve(String A) {
         int count = 0;
