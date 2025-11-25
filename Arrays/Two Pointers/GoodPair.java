@@ -31,6 +31,27 @@
 //   Explanation 2: No pair has sum equal to 4.
 //   Explanation 3: (i,j) = (2,3)
 
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        Collections.sort(A);
+        int sum = 0;
+        int  i=0;
+        int j =A.size()-1;
+        while(i<j){
+            int val = (A.get(i) + A.get(j));
+            if(val == B){
+                return 1;
+            }else if(val<B){
+                i++;
+            }else if(val>B){
+                j--;
+            }
+        }
+        return 0;
+    }
+}
+
+
 import java.util.*;
 public class Solution {
     public int solve(int[] A, int B) {
