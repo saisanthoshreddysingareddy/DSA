@@ -1,0 +1,17 @@
+Server can execute 10^8 iterations in 1 sec
+So 1 iteration = 1/10^8 sec 
+
+	• Count of Factors  - Factors comes in pairs, i<N/i  if I == N/I then increment count by 1, else N/2.   TC - root N
+		○ 
+	• Sum of n natural numbers  - N(N+1)/2
+		○ 
+	• Total no.of subarrays = N(N+1)/2
+	• To find how many numbers lie between a and b is   -  b-a+1
+		○ Works only when a ≤ b
+	• To find total no.of subarrays of length K = N-K+1
+	• Geometric progression series - a (r^n -1)/ (r-1)
+	• TC Calculation -  
+		○ Second is not a correct comparison - The same program can run in 1 second on a MacBook and 3 seconds on a cheap laptop — but the algorithm is the same.
+		○ So we measure: Number of Iterations
+		○ Counting iterations gives the correct Time Complexity
+Big O Comparison order -
