@@ -1,0 +1,9 @@
+Two Pointers Pattern - 
+	Core Two Pointer Patterns -
+		○ For reversing the array       -                      sorted not required.
+		○ Checking palindrome -                               sorting not required
+		○ For pair-sum/type problems       -            sorting required.
+		○ Removing duplicates from a array -        sorting required
+		○ Merging two sorted arrays -                     sorting required
+		○ Partitioning the array - Move small values left, big right - Sorting not required 
+	
