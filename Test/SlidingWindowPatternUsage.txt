@@ -1,0 +1,6 @@
+Sliding window, Dynamic sliding window - Sliding window works only for positive numbers and contiguous elements
+	• Core sliding window patterns - 
+		○ Fixed-size Sliding Window
+		○ Variable-size (Dynamic) Sliding Window
+			○ You don’t know the window size in advance.
+The window grows and shrinks based on a condition.
