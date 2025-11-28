@@ -1,0 +1,17 @@
+Prefix sum - 
+	• Core prefix patterns
+		○ Range Sum Query (L to R) - Find sum from index L to R many times.
+			○ Why prefix sum?
+				Each query becomes O(1) instead of O(N).
+		○ Subarray Sum Equals K (HashSet method) - Important pattern
+			✔ HashSet → existence check
+			✔ HashMap → get exact subarray indices
+		○ Count subarrays sum = K (HashMap)
+		○ Prefix Sum with +1 / -1 for counting frequency
+			○ Example problems:
+				• Number of even/odd numbers in range
+				• Number of vowels in a substring
+				• Balanced subarrays
+				• Equal 0s and 1s (convert 0 → -1)
+		○ Maximum Subarray Prefix-Sum (but Kadane is better)
+Difference array for range updates
