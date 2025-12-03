@@ -42,3 +42,32 @@
 // Example Explanation
 //   Overlapping intervals are merged to produce the final list of
 //   non-overlapping, sorted intervals.
+
+
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(ArrayList<ArrayList<Integer>> A) {
+        int a1 = A.get(0).get(0);
+        int b1 = A.get(0).get(1);
+        ArrayList<ArrayList<Integer>> two_d = new ArrayList<>();
+        for(int i=1;i<A.size();i++){
+            int a2 = A.get(i).get(0);
+            int b2 = A.get(i).get(1);
+            if(a2>b1){
+                ArrayList<Integer> arr = new ArrayList<>();
+                arr.add(a1);
+                arr.add(b1);
+                two_d.add(arr);
+                a1 = a2;
+                b1 = b2;
+            }else{
+                a1 = Math.min(a1,a2);
+                b1 = Math.max(b1,b2);
+            }
+        }
+        ArrayList<Integer> final_arr = new ArrayList<>();
+        final_arr.add(a1);
+        final_arr.add(b1);
+        two_d.add(final_arr);
+        return two_d;
+    }
+}
