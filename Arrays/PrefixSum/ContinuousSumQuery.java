@@ -56,3 +56,28 @@
 //
 //     Third devotee donated 25 coins to beggars from index 2 to 5.
 //     After third devotee:  [10, 55, 45, 25, 25]
+
+
+public class Solution {
+    public int[] solve(int A, int[][] B) {
+        int[] arr = new int[A];
+        for(int i=0;i<B.length;i++){
+            int start = B[i][0]-1;
+            int end = B[i][1]-1;
+            int value = B[i][2];
+            arr[start] = arr[start]+value;
+            if(end+1<A){
+                arr[end+1] = arr[end+1]-value;
+            }
+        }
+
+        //Build prefix sum
+        int[] pf_arr = new int[A];
+        pf_arr[0] = arr[0];
+        for(int i=1;i<arr.length;i++){
+            pf_arr[i] = pf_arr[i-1]+arr[i];
+        }
+
+        return pf_arr;
+    }
+}
