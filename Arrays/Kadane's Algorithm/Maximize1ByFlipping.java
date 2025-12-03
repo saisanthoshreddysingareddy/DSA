@@ -110,7 +110,5 @@ public class Solution {
             return new ArrayList<>();
         }
         return result;
-
-
     }
 }
