@@ -43,3 +43,20 @@ Explanation 2:
   The string "strings" does not read the same backward.
   Therefore, it is not a palindrome, so return 0.
 */
+
+
+public class Solution {
+    public int solve(String A) {
+        int result = helper(A, 0, A.length()-1);
+        return result;
+    }
+    public int helper(String A, int s, int e){
+        if(s>=e){
+            return 1;
+        }
+        if(A.charAt(s) != A.charAt(e)){
+            return 0;
+        }
+        return helper(A, s+1, e-1);
+    }
+}
