@@ -48,6 +48,21 @@ Explanation 2:
     1 2 3 4 (increasing order)
 */
 
+public class Solution {
+    public void DecThenInc(int A) {
+        helper(A);
+        System.out.println();
+    }
+    public void helper(int A){
+        if(A==1){
+            System.out.print("1 1 ");
+            return;
+        }
+        System.out.print(A + " ");
+        helper(A-1);
+        System.out.print(A + " ");
+    }
+}
 
 
 // public class Solution {
