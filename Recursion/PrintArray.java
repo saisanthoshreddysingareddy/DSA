@@ -40,3 +40,17 @@ Example Explanation
 Explanation:
   Print the elements of the array in the order in which they appear.
 */
+
+public class Solution {
+    public void PrintArray(ArrayList<Integer> A) {
+        helper(A, 0);
+        System.out.println();
+    }
+    public void helper(ArrayList<Integer> arr, int index){
+        if(index == arr.size()){
+            return;
+        }
+        System.out.print(arr.get(index)+" ");
+        helper(arr, index+1);
+    }
+}
