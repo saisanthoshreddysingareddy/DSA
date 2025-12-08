@@ -45,3 +45,39 @@ Explanation 1:
 Explanation 2:
   Any power of 1 is always 1.
 */
+
+
+public class Solution {
+    public Long power(int A, int B) {
+        long result = helper(A, B);
+        return result;
+    }
+    public Long helper(int A, int B){
+        if(B==0){
+            return 1L;
+        }
+        long sa = helper(A, B/2);
+        if(B%2==0){
+            return sa*sa;
+        }
+        return sa*sa*A;
+    }
+}
+// TC - O(logN)
+// SC - O(logN)
+
+// public class Solution {
+//     public Long power(int A, int B) {
+//         long result = helper(A, B);
+//         return result;
+//     }
+//     public Long helper(int A, int B){
+//         if(B==0){
+//             return 1L;
+//         }
+//         return A * helper(A, B-1);
+//     }
+// }
+
+// TC - O(N)
+// SC - O(N)
