@@ -53,3 +53,27 @@ For Input 2:
   - Learner 3 does not appear in A → frequency = 0
   - Learner 2 appears 2 times in A → frequency = 2
 */
+
+
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A, ArrayList<Integer> B) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<A.size(); i++){
+            if(map.containsKey(A.get(i))){
+                int freq = map.get(A.get(i));
+                map.put(A.get(i), freq+1);
+            }else{
+                map.put(A.get(i),1);
+            }
+        }
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i=0; i<B.size(); i++){
+            if(map.containsKey(B.get(i))){
+                arr.add(map.get(B.get(i)));
+            }else{
+                arr.add(0);
+            }
+        }
+        return arr;
+    }
+}
