@@ -58,3 +58,25 @@ Explanation 2:
     (1, 2), (1, 4), (2, 3), (3, 4)
   Hence, total pairs = 4.
 */
+
+
+public class Solution {
+    public int solve(ArrayList<Integer> A, int B) {
+        long ans = 0;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for(int i=0; i<A.size(); i++){
+            int target = B - A.get(i);
+            if(map.containsKey(target)){
+                ans += map.get(target);
+            }
+            if(map.containsKey(A.get(i))){
+                int freq = map.get(A.get(i));
+                map.put(A.get(i), freq+1);
+            }else{
+                map.put(A.get(i),1);
+            }
+        }
+        long result = ans %1000000007;
+        return (int)result;
+    }
+}
