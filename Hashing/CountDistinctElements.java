@@ -40,3 +40,14 @@ Explanation 1:
 Explanation 2:
   The distinct values in the array are {3, 9, 0, 1}. Total = 4.
 */
+
+
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        HashSet<Integer> set = new HashSet<>();
+        for(int i=0; i<A.size(); i++){
+            set.add(A.get(i));
+        }
+        return set.size();
+    }
+}
