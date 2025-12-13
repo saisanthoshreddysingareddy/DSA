@@ -45,3 +45,30 @@ Explanation 1:
 Explanation 2:
   Merging A and B produces the sorted array [1, 2].
 */
+
+
+public class Solution {
+    public ArrayList<Integer> solve(final List<Integer> A, final List<Integer> B) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        while(i<A.size() && j<B.size()){
+            if(A.get(i)<=B.get(j)){
+                arr.add(A.get(i));
+                i++;
+            }else{
+                arr.add(B.get(j));
+                j++;
+            }
+        }
+        while(i<A.size()){
+            arr.add(A.get(i));
+            i++;
+        }
+        while(j<B.size()){
+            arr.add(B.get(j));
+            j++;
+        }
+        return arr;
+    }
+}
