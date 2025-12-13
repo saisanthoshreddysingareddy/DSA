@@ -43,3 +43,54 @@ Explanation 2:
     (1, 2) because A[1] > A[2]
     (1, 3) because A[1] > A[3]
 */
+
+
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        long result = mergeSort(A, 0, A.size() - 1);
+        return (int)(result % 1000000007);
+    }
+
+    public long mergeSort(ArrayList<Integer> arr, int start, int end){
+        if(start == end){
+            return 0;
+        }
+        int mid = (start + end) / 2;
+        long leftCount = mergeSort(arr, start, mid);
+        long rightCount = mergeSort(arr, mid + 1, end);
+        long finalCount = merge(arr, start, mid, end);
+        return leftCount + rightCount + finalCount;
+    }
+
+    public long merge(ArrayList<Integer> arr, int low, int mid_value, int high){
+        int left = low;
+        int right = mid_value + 1;
+        long inversion_count = 0;
+        ArrayList<Integer> temp = new ArrayList<>();
+        while(left <= mid_value && right <= high){
+            if(arr.get(left) <= arr.get(right)){
+                temp.add(arr.get(left));
+                left++;
+            } else {
+                inversion_count += (mid_value - left + 1);
+                temp.add(arr.get(right));
+                right++;
+            }
+        }
+
+        while(left <= mid_value){
+            temp.add(arr.get(left));
+            left++;
+        }
+
+        while(right <= high){
+            temp.add(arr.get(right));
+            right++;
+        }
+
+        for(int i = low; i <= high; i++){
+            arr.set(i, temp.get(i - low));
+        }
+        return inversion_count;
+    }
+}
