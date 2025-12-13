@@ -50,3 +50,60 @@ Explanation 2:
   After sorting, it becomes [20, 30, 40, 50].
   The rest of the array remains unchanged.
 */
+
+public class Solution {
+    public ArrayList<Integer> sortSubarray(ArrayList<Integer> A, int B, int C) {
+        
+        ArrayList<Integer> range_arr = new ArrayList<>();
+        for(int i=B; i<=C; i++){
+            range_arr.add(A.get(i));
+        }
+        // [49, 44, 8]
+
+        mergeSort(range_arr, 0, range_arr.size()-1);
+        
+        for(int i=B;i<=C;i++){
+            A.set(i, range_arr.get(i-B));
+        }
+        return A;
+    }
+    public void mergeSort(ArrayList<Integer> arr, int start, int end){
+        int mid = (start+end)/2;
+        if(start==end){
+            return;
+        }
+        mergeSort(arr, start, mid);
+        mergeSort(arr, mid+1, end);
+        merge(arr, start, mid, end);
+    }
+    // [49, 44, 8]
+    public ArrayList<Integer> merge(ArrayList<Integer> arr, int low, int mid_value, int high){
+        int left = low; 
+        int right = mid_value+1;
+        ArrayList<Integer> temp = new ArrayList<>();
+        while(left <= mid_value && right <= high){
+            if(arr.get(left) < arr.get(right)){
+                temp.add(arr.get(left));
+                left++;
+            }else{
+                temp.add(arr.get(right));
+                right++;
+            }
+        }
+
+        while(left <= mid_value){
+            temp.add(arr.get(left));
+            left++;
+        }
+
+        while(right <= high){
+            temp.add(arr.get(right));
+            right++;
+        }
+
+        for(int i=low;i<=high;i++){
+            arr.set(i, temp.get(i-low));
+        }
+        return arr;
+    }
+}
