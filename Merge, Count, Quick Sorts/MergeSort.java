@@ -38,3 +38,48 @@ For Input 1:
 For Input 2:
   The array in sorted order is [1, 2, 3, 4].
 */
+
+
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A) {
+        mergeSort(A, 0, A.size()-1);
+        return A;
+    }
+    public void mergeSort(ArrayList<Integer> A, int l, int r){
+        if(l==r){
+            return;
+        }
+        int mid = (l+r)/2;
+        mergeSort(A, l, mid);
+        mergeSort(A, mid+1, r);
+        merge(A, l, mid, r);
+    }
+    public ArrayList<Integer> merge(ArrayList<Integer> A, int l, int mid, int r){
+        ArrayList<Integer> temp = new ArrayList<>();
+        int i = l;
+        int j = mid+1;
+        while(i<=mid && j<=r){
+            if(A.get(i)<=A.get(j)){
+                temp.add(A.get(i));
+                i++;
+            }else{
+                temp.add(A.get(j));
+                j++;
+            }
+        }
+        while(i<=mid){
+            temp.add(A.get(i));
+            i++;
+        }
+        while(j<=r){
+            temp.add(A.get(j));
+            j++;
+        }
+
+        for(int m=l;m<=r;m++){
+            A.set(m, temp.get(m-l));
+        }
+
+        return temp;
+    }
+}
