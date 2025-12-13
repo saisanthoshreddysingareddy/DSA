@@ -51,3 +51,21 @@ Explanation 2:
     - First chunk:  [2, 0, 1]
     - Second chunk: [3]
 */
+
+
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+
+        int maxSoFar= A.get(0);
+        int count =0;
+        for(int i=0;i<A.size();i++){
+            if(A.get(i)>maxSoFar){
+                maxSoFar = A.get(i);
+            }
+            if(maxSoFar == i){
+                count++;
+            }
+        }
+        return count;
+    }
+}
