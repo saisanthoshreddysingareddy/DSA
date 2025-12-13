@@ -48,3 +48,27 @@ Explanation 2:
   Similarly, a rearrangement for 427390 cannot be smaller than 023479,
   i.e., 23479.
 */
+
+public class Solution {
+    public int[] smallestNumber(int[] A) {
+        // A = [4, 2, 7, 3, 9, 0]
+        int[] freq_arr = new int[10];
+        for(int i=0; i<A.length; i++){
+            freq_arr[A[i]]++;
+        }
+
+        int k=0;
+        for(int i=0;i<freq_arr.length; i++){
+            int freq = freq_arr[i];
+            if(freq==0){
+                continue;
+            }
+            while(freq>0){
+                A[k] = i;
+                k++;
+                freq--;
+            }
+        }
+        return A;
+    }
+}
