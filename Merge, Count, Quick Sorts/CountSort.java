@@ -38,3 +38,35 @@ For Input 1:
 For Input 2:
   The array in sorted order is [1, 2, 3, 4].
 */
+
+
+public class Solution {
+    public int[] solve(int[] A) {
+        int maxValue = Integer.MIN_VALUE;
+        for(int i=0; i<A.length; i++){
+            if(A[i]>maxValue){
+                maxValue = A[i];
+            }
+        }
+
+        int[] freq_arr = new int[maxValue+1];
+        for(int i=0; i<A.length; i++){
+            freq_arr[A[i]]++;
+        }
+
+        int[] arr = new int[A.length];
+        int k = 0;
+        for(int i=0; i<freq_arr.length; i++){
+            int freq = freq_arr[i];
+            if(freq==0){
+                continue;
+            }
+            while(freq>0){
+                arr[k] = i;
+                freq--;
+                k++;
+            }
+        }
+        return arr;
+    }
+}
