@@ -47,3 +47,23 @@ Explanation 1:
 Explanation 2:
   The array [0] is already in the required order.
 */
+
+public class Solution {
+    public int[] sortColors(int[] A) {
+        int[] freq_arr = new int[3];
+        for(int i=0; i<A.length; i++){
+            freq_arr[A[i]]++;
+        }
+        int[] arr = new int[A.length];
+        int k = 0;
+        for(int i=0; i<freq_arr.length; i++){
+            int freq = freq_arr[i];
+            while(freq>0){
+                arr[k] = i;
+                freq--;
+                k++;
+            }
+        }
+        return arr;
+    }
+}
