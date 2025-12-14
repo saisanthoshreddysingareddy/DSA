@@ -44,3 +44,32 @@ Explanation:
   is less than the pivot element, and every element in the index range [3, 4]
   is greater than the pivot element.
 */
+
+
+class Solution {
+    public int partition(ArrayList<Integer> arr) {
+        int pivot = arr.get(arr.size()-1); //6
+        int l = 0;
+        int r = arr.size()-2;
+
+        while(l<=r){
+
+            while(l<=r && arr.get(l) <= pivot){
+                l++;
+            }
+            while(l<=r && arr.get(r)>pivot){
+                r--;
+            }
+            if(l<r){
+                swap(arr,l,r);
+            } 
+        }
+        swap(arr, arr.size()-1 , l);
+        return l;
+    }
+    public void swap(ArrayList<Integer> A, int start, int end){
+        int temp = A.get(end);
+        A.set(end, A.get(start));
+        A.set(start, temp);
+    }
+}
