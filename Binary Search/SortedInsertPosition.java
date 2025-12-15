@@ -54,7 +54,6 @@ Explanation 2:
   It should be inserted at index 1.
 */
 
-
 public class Solution {
     public int searchInsert(ArrayList<Integer> A, int B) {
         //    [0  1  2  3  4   5   6]
