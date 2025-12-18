@@ -42,3 +42,22 @@ For Input 1:
 For Input 2:
   We print the given linked list.
 */
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public void solve(ListNode A) {
+        ListNode temp = A;
+        while(temp != null){
+            System.out.print(temp.val + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+}
