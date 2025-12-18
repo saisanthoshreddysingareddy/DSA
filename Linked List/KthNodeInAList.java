@@ -29,3 +29,27 @@ Example Explanation
   The element at index 2 (0-based indexing) is 5,
   which is the 3rd element in the linked list.
 */
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public int solve(ListNode A, int B) {
+        ListNode temp = A;
+        int i=0;
+        while(i<B && temp != null){
+            i++;
+            temp = temp.next;
+        }
+        if(temp == null){
+            return -1;
+        }
+        return temp.val;
+    }
+}
