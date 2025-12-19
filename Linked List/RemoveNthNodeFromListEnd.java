@@ -52,3 +52,74 @@ Explanation 1:
 Explanation 2:
   The list contains only one node, which is removed.
 */
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode removeNthFromEnd(ListNode A, int B) {
+        ListNode fast = A;
+        ListNode slow = A;
+        int i = 0;
+        while(i<B){
+            if(fast == null){
+                return A.next;
+            }
+            i++;
+            fast = fast.next;
+        }
+        if (fast == null) {
+            return A.next;
+        }
+        while(fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return A;
+    }
+}
+
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+// public class Solution {
+//     public ListNode removeNthFromEnd(ListNode A, int B) {
+//         int i = 0;
+//         ListNode temp = A;
+//         while(temp != null){
+//             i++;
+//             temp = temp.next;
+//         }
+//         // i=5
+//         int position = i-B;
+//         if(B>i || position == 0){
+//             A = A.next;
+//             return A;
+//         }
+        
+//         int k = 0;
+//         ListNode curr = A;
+//         ListNode prev = null;
+//         while(k<position && curr != null){
+//             k++;
+//             prev = curr;
+//             curr = curr.next;
+//         }
+//         prev.next = curr.next;
+//         return A;
+//     }
+// }
