@@ -48,3 +48,34 @@ Explanation 2:
   After deleting the node at index 0, the list becomes:
     3 -> 2 -> 1
 */
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode solve(ListNode A, int B) {
+        ListNode curr = A;
+        ListNode prev = null;
+        if(curr == null){
+            return curr;
+        }
+        if(B == 0){
+            curr = curr.next;
+            return curr;
+        }
+        int i = 0;
+        while(i<B && curr != null){
+            i++;
+            prev = curr;
+            curr = curr.next;
+        }
+        prev.next = curr.next;
+        return A;
+    }
+}
+
