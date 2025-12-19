@@ -47,3 +47,43 @@ With random pointers:
   2 -> 1
   3 -> 1
 */
+
+/**
+ * Definition for singly-linked list with a random pointer.
+ * class RandomListNode {
+ *     int label;
+ *     RandomListNode next, random;
+ *     RandomListNode(int x) { this.label = x; }
+ * };
+ */
+public class Solution {
+    public RandomListNode copyRandomList(RandomListNode head) {
+        RandomListNode temp = head;
+        while(temp!=null){
+            RandomListNode cloned = new RandomListNode(temp.label);
+            cloned.next = temp.next;
+            temp.next = cloned;
+            temp = cloned.next;
+        }
+
+        RandomListNode curr = head;
+        while(curr!=null){
+            if(curr.random!=null){
+                curr.next.random =  curr.random.next;
+            }
+            curr = curr.next.next;
+        }
+
+        RandomListNode dummy = new RandomListNode(0);
+        RandomListNode present = head;
+        RandomListNode copy = dummy;
+        while(present != null){
+            copy.next = present.next; // 0->1
+            present = present.next.next;
+            copy = copy.next;
+        }
+        dummy = dummy.next;
+        return dummy;
+
+    }
+}
