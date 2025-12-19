@@ -37,3 +37,28 @@ Explanation 1:
   resulting in the linked list:
     1 -> 2
 */
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode deleteDuplicates(ListNode A) {
+        ListNode curr = A;
+        ListNode prev = A;
+        while(curr != null){
+            if(curr.val == prev.val){
+                curr = curr.next;
+            }else{
+                prev.next = curr;
+                prev = prev.next;
+            }
+        }
+        prev.next = null;
+        return A;
+    }
+}
