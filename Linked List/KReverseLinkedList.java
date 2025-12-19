@@ -47,3 +47,69 @@ Explanation 2:
   After reversing each group:
     [[3, 2, 1], [6, 5, 4]]
 */
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseList(ListNode A, int B) {
+        if (A == null || B <= 1) return A;
+
+        ListNode dummy = new ListNode(0);
+        dummy.next = A;
+
+        ListNode prevTail = dummy;
+        ListNode start = A;
+
+        while (start != null) {
+            // find the end of the current block
+            ListNode end = start;
+            int count = 1;
+            while (count < B && end.next != null) {
+                end = end.next;
+                count++;
+            }
+
+            if (count < B) {
+                // less than B nodes left  don't reverse
+                prevTail.next = start;
+                break;
+            }
+
+            ListNode stop = end.next;
+
+            // reverse this block
+            ListNode revHead = reverseBPart(start, stop);
+
+            // connect previous block to this reversed block
+            prevTail.next = revHead;
+
+            // connect tail of this block to next part
+            start.next = stop;
+
+            // move prevTail and start forward
+            prevTail = start;
+            start = stop;
+        }
+
+        return dummy.next;
+    }
+
+    public ListNode reverseBPart(ListNode start, ListNode stop) {
+        ListNode curr = start;
+        ListNode prev = null;
+        while (curr != stop) {
+            ListNode agla = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = agla;
+        }
+        return prev; // new head of this reversed block
+    }
+}
