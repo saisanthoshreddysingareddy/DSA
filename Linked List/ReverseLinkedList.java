@@ -47,3 +47,26 @@ Explanation 2:
   After reversing, the list remains:
     3 -> NULL
 */
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseList(ListNode A) {
+        ListNode curr = A;
+        ListNode prev = null;
+        while(curr != null){
+            ListNode currNext = curr.next; //2
+            curr.next = prev;
+            prev = curr;
+            curr = currNext;
+        }
+        return prev;
+    }
+}
