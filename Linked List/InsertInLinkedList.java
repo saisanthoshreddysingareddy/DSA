@@ -55,3 +55,38 @@ Explanation 1:
 Explanation 2:
   The new node is added after the first node of the linked list.
 */
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode solve(ListNode A, int B, int C) {
+        ListNode curr = A;
+        ListNode prev = null;
+        if(curr == null){
+            return new ListNode(B);
+        }
+        if(C==0){
+            ListNode firstNode = new ListNode(B);
+            firstNode.next = curr;
+            curr = firstNode;
+            return curr;
+        }
+        int i=0;
+        while(i<C && curr != null){
+            i++;
+            prev = curr;
+            curr = curr.next;
+        }
+        ListNode node = new ListNode(B);
+        prev.next = node;
+        node.next = curr;
+
+        return A;
+    }
+}
