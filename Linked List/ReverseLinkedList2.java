@@ -54,3 +54,46 @@ Explanation 2:
   Resulting list:
     5 -> 4 -> 3 -> 2 -> 1
 */
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     ListNode(int x) { val = x; next = null; }
+ * }
+ */
+public class Solution {
+    public ListNode reverseBetween(ListNode A, int B, int C) {
+        // Find start node
+        ListNode start = A;
+        ListNode beforeStart = null;
+        for(int i=1; i<B; i++){
+            beforeStart = start;
+            start = start.next;
+        }
+        //Find end node
+        ListNode end = A;
+        for(int i=1; i<C; i++){
+            end = end.next;
+        }
+        // beforeStart = 1    // start = 2    // end = 4
+        ListNode prev = null;
+        ListNode curr = start;
+        ListNode stop = end.next;
+        while(curr != stop){
+            ListNode nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        if(beforeStart != null){
+            beforeStart.next = prev;
+        }else{
+            A = prev;
+        }
+        start.next = stop;
+        return A;
+    }
+}
