@@ -54,3 +54,25 @@ Explanation 2:
   Index 1: No element less than 2 on the left, G[1] = -1
   Index 2: No element less than 1 on the left, G[2] = -1
 */
+
+public class Solution {
+    public ArrayList<Integer> prevSmaller(ArrayList<Integer> A) {
+        // 0  1  2  3   4
+        // 4  5  2  10  8
+        Stack<Integer> st = new Stack<>();
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i=0; i<A.size(); i++){
+            int curr = A.get(i);
+            while(!st.isEmpty() && curr <= st.peek()){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                arr.add(-1);
+            }else{
+                arr.add(st.peek());
+            }
+            st.push(curr);
+        }
+        return arr;
+    }
+}
