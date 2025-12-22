@@ -48,3 +48,27 @@ in the correct order.
 In the second example, there is no closing bracket for "{",
 so the parenthesis sequence is invalid.
 */
+
+public class Solution {
+    public int solve(String A) {
+        Stack<Character> st = new Stack<>();
+        for(int i=0; i<A.length(); i++){
+            char ch = A.charAt(i);
+            if(ch == '{' || ch == '(' || ch == '['){
+                st.push(ch);
+            }else{
+                if(st.isEmpty()){
+                    return 0;
+                }
+                char val = st.peek();
+                if((val == '[' && ch == ']') || (val == '(' && ch == ')') || (val == '{' && ch == '}') ){
+                    st.pop();
+                }
+            }
+        }
+        if(!st.isEmpty()){
+            return 0;
+        }
+        return 1;
+    }
+}
