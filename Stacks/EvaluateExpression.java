@@ -62,3 +62,41 @@ Explanation 2:
   Final evaluation:
       (4) + ((13) / (5)) = 6
 */
+
+
+public class Solution {
+    public int evalRPN(ArrayList<String> A) {
+        Stack<Integer> st = new Stack<>();
+        for(int i=0; i<A.size(); i++){
+            String ch = A.get(i);
+            if(ch.equals("+") || ch.equals("-") || ch.equals("*") || ch.equals("/")){
+                if(st.isEmpty()){
+                    return -1;
+                }
+                int ele1 = st.pop();
+                if(st.isEmpty()){
+                    return -1;
+                }
+                int ele2 = st.pop();
+                if(ch.equals("+")){
+                    st.push(ele1+ele2);
+                }else if(ch.equals("-")){
+                    st.push(ele2-ele1);
+                }else if(ch.equals("*")){
+                    st.push(ele1*ele2);
+                }else if(ch.equals("/")){
+                    st.push(ele2/ele1);
+                }else{
+                    return -1;
+                }
+            }else{
+                int intValue = Integer.parseInt(ch);
+                st.push(intValue);
+            }
+        }
+        if(st.size()>1){
+            return -1;
+        }
+        return st.peek();
+    }
+}
