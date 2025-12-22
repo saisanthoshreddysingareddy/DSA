@@ -79,3 +79,21 @@ Explanation 1:
 Explanation 2:
   The ball is passed to player with ID = 2.
 */
+
+public class Solution {
+    public int solve(int A, int B, ArrayList<Integer> C) {
+        Stack<Integer> st = new Stack<>();
+        if(st.isEmpty()){
+            st.push(B);
+        }
+        for(int i=0; i<C.size(); i++){
+            int val = C.get(i);
+            if(val != 0){
+                st.push(val);
+            }else{
+                st.pop();
+            }
+        }
+        return st.peek();
+    }
+}
