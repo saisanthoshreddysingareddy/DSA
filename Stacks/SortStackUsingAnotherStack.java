@@ -41,3 +41,32 @@ Explanation 1:
 Explanation 2:
   The given stack is sorted in ascending order.
 */
+
+
+public class Solution {
+    public ArrayList<Integer> solve(ArrayList<Integer> A) {
+        Stack<Integer> inputStack = new Stack<>();
+        Stack<Integer> tempStack = new Stack<>();
+        for(int i=0;i<A.size();i++){
+            inputStack.push(A.get(i));   
+        }
+
+        while(!inputStack.isEmpty()){
+            int curr = inputStack.pop();
+            while(!tempStack.isEmpty() && curr < tempStack.peek()){
+                inputStack.push(tempStack.pop());
+            }
+            tempStack.push(curr);
+        }
+
+        ArrayList<Integer> values_arr = new ArrayList<>();
+        while(!tempStack.isEmpty()){
+            values_arr.add(tempStack.pop()); // 100 17 11 5
+        }
+        ArrayList<Integer> sorted_arr = new ArrayList<>();
+        for(int i=values_arr.size()-1; i>=0; i--){
+            sorted_arr.add(values_arr.get(i));
+        }
+        return sorted_arr;
+    }
+}
