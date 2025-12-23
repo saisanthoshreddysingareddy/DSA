@@ -47,3 +47,28 @@ Explanation 2:
   The expression "(a+(a+b))" does not contain any redundant
   braces, so the output is 0.
 */
+
+public class Solution {
+    public int braces(String A) {
+        Stack<Character> st = new Stack<>();
+        for(int i=0; i<A.length(); i++){
+            char ch = A.charAt(i);
+            boolean hasOperator = false;
+            if(ch == ')' ){ 
+                while(!st.isEmpty() && st.peek() != '('){
+                    char top = st.pop();
+                    if(top == '+' || top == '-' || top == '*' || top == '/'){
+                        hasOperator = true;
+                    }   
+                }
+                st.pop();
+                if(!hasOperator){
+                    return 1;
+                }
+            }else{
+                st.push(ch);
+            }
+        }
+        return 0;
+    }
+}
