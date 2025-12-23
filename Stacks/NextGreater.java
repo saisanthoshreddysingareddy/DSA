@@ -54,3 +54,25 @@ Explanation 2:
   Since the array is in descending order, there is no next greater
   element for any of the elements.
 */
+
+public class Solution {
+    public ArrayList<Integer> nextGreater(ArrayList<Integer> A) {
+        Stack<Integer> st = new Stack<>();
+        ArrayList<Integer> arr = new ArrayList<>();
+        for(int i=0; i<A.size(); i++){
+            arr.add(0);
+        }
+        for(int i=A.size()-1; i>=0; i--){
+            while(!st.isEmpty() && A.get(i)>=st.peek()){
+                st.pop();
+            }
+            if(st.isEmpty()){
+                arr.set(i, -1);
+            }else{
+                arr.set(i, st.peek());
+            }
+            st.push(A.get(i));
+        }
+        return arr;
+    }
+}
