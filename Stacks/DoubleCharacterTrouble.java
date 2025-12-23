@@ -52,3 +52,26 @@ Explanation 2:
   The string "ab" has no consecutive identical pairs,
   so no removals are performed.
 */
+
+
+public class Solution {
+    public String solve(String A) {
+        Stack<Character> st = new Stack<>();
+
+        for(int i=0; i<A.length(); i++){
+            char curr = A.charAt(i);
+            if(!st.isEmpty() && st.peek() == curr){
+                st.pop();
+            } else {
+                st.push(curr);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()){
+            sb.append(st.pop());
+        }
+
+        return sb.reverse().toString();
+    }
+}
