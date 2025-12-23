@@ -56,3 +56,69 @@ Explanation 2:
 
   Sum of values % (10^9 + 7) = 26
 */
+
+public class Solution {
+    public int solve(ArrayList<Integer> A) {
+        int n = A.size();
+        long mod = 1000000007;
+
+        long[] nextGreater = new long[n];
+        long[] prevGreater = new long[n];
+        long[] nextSmaller = new long[n];
+        long[] prevSmaller = new long[n];
+
+        Stack<Integer> stack = new Stack<>();
+
+        // Next Greater
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && A.get(stack.peek()) < A.get(i)) {
+                nextGreater[stack.pop()] = i;
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) nextGreater[stack.pop()] = n;
+
+        // Previous Greater
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && A.get(stack.peek()) <= A.get(i)) {
+                prevGreater[stack.pop()] = i;
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) prevGreater[stack.pop()] = -1;
+
+        // Next Smaller
+        stack.clear();
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && A.get(stack.peek()) > A.get(i)) {
+                nextSmaller[stack.pop()] = i;
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) nextSmaller[stack.pop()] = n;
+
+        // Previous Smaller
+        stack.clear();
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && A.get(stack.peek()) >= A.get(i)) {
+                prevSmaller[stack.pop()] = i;
+            }
+            stack.push(i);
+        }
+        while (!stack.isEmpty()) prevSmaller[stack.pop()] = -1;
+
+        long result = 0;
+
+        for (int i = 0; i < n; i++) {
+            long maxCount = (i - prevGreater[i]) * (nextGreater[i] - i);
+            long minCount = (i - prevSmaller[i]) * (nextSmaller[i] - i);
+            long contribution = (maxCount - minCount) * A.get(i);
+            result = (result + contribution) % mod;
+        }
+
+        if (result < 0) result += mod;
+
+        return (int) result;
+    }
+}
