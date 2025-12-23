@@ -44,3 +44,49 @@ Example Explanation
 Explanation 1:
   The output denotes the postfix expression of the given infix input.
 */
+
+import java.util.*;
+
+public class Solution {
+    public String solve(String A) {
+        StringBuilder output = new StringBuilder(); // Efficient
+        Stack<Character> st = new Stack<>();
+
+        for (int i = 0; i < A.length(); i++) {
+            char curr = A.charAt(i);
+
+            if (Character.isLetter(curr)) {  // Operand
+                output.append(curr);
+            } 
+            else if (curr == '(') {         // Opening brace
+                st.push(curr);
+            } 
+            else if (curr == ')') {         // Closing brace
+                while (!st.isEmpty() && st.peek() != '(') {
+                    output.append(st.pop());
+                }
+                if (!st.isEmpty()) st.pop();  // pop '('
+            } 
+            else {                          // Operator
+                while (!st.isEmpty() && precedence(st.peek()) >= precedence(curr)) {
+                    output.append(st.pop());
+                }
+                st.push(curr);
+            }
+        }
+
+        // Pop remaining operators
+        while (!st.isEmpty()) {
+            output.append(st.pop());
+        }
+
+        return output.toString();
+    }
+
+    private int precedence(char op) {
+        if (op == '^') return 3;
+        if (op == '*' || op == '/') return 2;
+        if (op == '+' || op == '-') return 1;
+        return 0;
+    }
+}
