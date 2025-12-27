@@ -61,3 +61,42 @@ Explanation 1:
 Return the 2D array where each row represents the nodes present at
 that level of the binary tree, traversed from left to right.
 */
+
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(TreeNode A) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(A);
+        ArrayList<ArrayList<Integer>> final_array = new ArrayList<>();
+        while(!q.isEmpty()){
+            int size = q.size();
+            ArrayList<Integer> arr = new ArrayList<>();
+            for(int i=0; i<size; i++){
+                TreeNode curr = q.poll(); // 3
+                arr.add(curr.val); 
+                if(curr.left != null){
+                    q.add(curr.left);
+                }
+                if(curr.right != null){
+                    q.add(curr.right);
+                }
+            }
+            final_array.add(arr);
+        }
+        return final_array;
+    }
+}
