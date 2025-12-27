@@ -54,3 +54,34 @@ The inorder traversal of the given tree is [1, 3, 2].
 Explanation 2:
 The inorder traversal of the given tree is [6, 1, 3, 2].
 */
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ArrayList<Integer> inorderTraversal(TreeNode A) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        helperFunction(A, arr);
+        return arr;
+    }
+
+    public void helperFunction(TreeNode A, ArrayList<Integer> arr){
+        if(A==null){
+            return;
+        }
+        helperFunction(A.left, arr);
+        arr.add(A.val);
+        helperFunction(A.right, arr);
+    }
+}
