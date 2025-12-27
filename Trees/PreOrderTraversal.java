@@ -54,3 +54,33 @@ The preorder traversal of the given tree is [1, 2, 3].
 Explanation 2:
 The preorder traversal of the given tree is [1, 6, 2, 3].
 */
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ArrayList<Integer> preorderTraversal(TreeNode A) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        helperFunction(A, arr);
+        return arr;
+    }
+    public void helperFunction(TreeNode A, ArrayList<Integer> arr){
+        if(A == null){
+            return;
+        }
+        arr.add(A.val);
+        helperFunction(A.left, arr);
+        helperFunction(A.right, arr);
+    }
+}
