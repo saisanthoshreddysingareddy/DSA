@@ -54,3 +54,33 @@ The postorder traversal of the given tree is [3, 2, 1].
 Explanation 2:
 The postorder traversal of the given tree is [6, 3, 2, 1].
 */
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ArrayList<Integer> postorderTraversal(TreeNode A) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        helperFunction(A, arr);
+        return arr;
+    }
+    public void helperFunction(TreeNode A, ArrayList<Integer> arr){
+        if(A == null){
+            return;
+        }
+        helperFunction(A.left, arr);
+        helperFunction(A.right, arr);
+        arr.add(A.val);
+    }
+}
