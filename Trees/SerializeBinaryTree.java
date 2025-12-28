@@ -68,3 +68,45 @@ The level order traversal of the given tree is
 Since node 3 has a NULL left child, and nodes 4 and 5 have both
 children as NULL, they are represented using -1.
 */
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ArrayList<Integer> solve(TreeNode A) {
+        Queue<TreeNode> q = new LinkedList<>();
+        ArrayList<Integer> arr = new ArrayList<>();
+        q.add(A);
+        arr.add(A.val);
+        while(!q.isEmpty()){
+            int size = q.size();
+            for(int i=0; i<size; i++){
+                TreeNode curr = q.poll();
+                if(curr.left != null){
+                    q.add(curr.left);
+                    arr.add(curr.left.val);
+                }else{
+                    arr.add(-1);
+                }
+                if(curr.right != null){
+                    q.add(curr.right);
+                    arr.add(curr.right.val);
+                }else{
+                    arr.add(-1);
+                }
+            }
+        }
+        return arr;
+    }
+}
