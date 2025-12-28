@@ -75,3 +75,55 @@ The node with value 10 is deleted from the Binary Search Tree.
 Explanation 2:
 The node with value 6 is deleted from the Binary Search Tree.
 */
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public TreeNode solve(TreeNode A, int B) {
+        if(A == null){
+            return null;
+        }
+        if(A.val == B){
+            if(A.left == null && A.right == null){
+                return null;
+            }
+            if(A.left == null || A.right == null){
+                if(A.left==null){
+                    return A.right;
+                }else{
+                    return A.left;
+                }
+            }
+            
+            TreeNode temp = A.left;
+            TreeNode maxNode = FindMax(temp);
+
+            A.val = maxNode.val;
+            A.left = solve(A.left, maxNode.val);
+        }
+        else if(A.val < B){
+            A.right = solve(A.right, B);
+        }else{
+            A.left = solve(A.left, B);
+        }
+        return A;
+    }
+    TreeNode FindMax(TreeNode node){
+        while(node.right != null){
+            node = node.right;
+        }
+        return node;
+    }
+}
