@@ -69,3 +69,40 @@ is -1, it denotes a NULL/None child.
 Since node 3 has a NULL left child, and nodes 4 and 5 have both NULL
 children, they are represented using -1.
 */
+
+
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) {
+ *      val = x;
+ *      left=null;
+ *      right=null;
+ *     }
+ * }
+ */
+public class Solution {
+    public TreeNode solve(ArrayList<Integer> A) {
+        Queue<TreeNode> q = new LinkedList<>();
+        TreeNode root = new TreeNode(A.get(0));
+        q.add(root);
+        int i=1;
+        while(!q.isEmpty() && i<A.size()){
+            TreeNode curr = q.poll();
+            if(i<A.size() && (A.get(i) != -1) ){
+                curr.left = new TreeNode(A.get(i));
+                q.add(curr.left);
+            }
+            i++;
+            if(i<A.size() && A.get(i) != -1){
+                curr.right = new TreeNode(A.get(i));
+                q.add(curr.right);
+            }
+            i++;
+        }
+        return root;
+    }
+}
